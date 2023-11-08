@@ -7,7 +7,9 @@
   "compilerOptions": {
     "webpack": true,
     "tsConfigPath": "apps/movies/tsconfig.app.json",
-    "assets": ["static/*"],
+    "assets": [
+      "static/*"
+    ],
     "watchAssets": true
   },
   "projects": {
@@ -27,6 +29,15 @@
       "sourceRoot": "apps/storage/src",
       "compilerOptions": {
         "tsConfigPath": "apps/storage/tsconfig.app.json"
+      }
+    },
+    "avaliation": {
+      "type": "application",
+      "root": "apps/avaliation",
+      "entryFile": "main",
+      "sourceRoot": "apps/avaliation/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/avaliation/tsconfig.app.json"
       }
     }
   }

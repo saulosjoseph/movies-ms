@@ -1,21 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { Avaliation, Prisma } from '@prisma/client';
 import { PrismaService } from 'apps/movies/src/prisma.service';
-import { File } from '@prisma/client';
 
 @Injectable()
-export class StorageService {
+export class AvaliationService {
   constructor(private prisma: PrismaService) {}
   async create(
-    file: Express.Multer.File,
-    protocol: string,
-    host: string,
+    data: Prisma.AvaliationCreateWithoutMovieInput,
     movieId: number,
-  ): Promise<File> {
-    return this.prisma.file.create({
+  ): Promise<Avaliation> {
+    return this.prisma.avaliation.create({
       data: {
-        fileName: file.filename,
-        contentType: file.mimetype,
-        url: `${protocol}://${host}/cover/${file.filename}`,
+        ...data,
         movie: {
           connect: {
             id: movieId,
