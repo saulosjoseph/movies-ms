@@ -24,7 +24,7 @@
 
 ## Data flow
 
-![Diagram](./public/diagram.svg =x100)
+<img src="./public/diagram.svg" width="200">
 
 ## Description
 
