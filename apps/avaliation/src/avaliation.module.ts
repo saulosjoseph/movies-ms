@@ -2,9 +2,24 @@ import { Module } from '@nestjs/common';
 import { AvaliationController } from './avaliation.controller';
 import { AvaliationService } from './avaliation.service';
 import { PrismaService } from 'apps/movies/src/prisma.service';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
-  imports: [],
+  imports: [
+    ClientsModule.register([
+      {
+        name: 'CLASSIFICATION_SERVICE',
+        transport: Transport.RMQ,
+        options: {
+          urls: ['amqp://localhost:5672'],
+          queue: 'classification_queue',
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),
+  ],
   controllers: [AvaliationController],
   providers: [AvaliationService, PrismaService],
 })

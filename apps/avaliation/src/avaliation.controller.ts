@@ -3,6 +3,7 @@ import {
   Controller,
   HttpException,
   HttpStatus,
+  Inject,
   Param,
   ParseIntPipe,
   Post,
@@ -10,10 +11,14 @@ import {
 import { AvaliationService } from './avaliation.service';
 import { CreateDto } from './avaliation.validator';
 import { Avaliation } from '@prisma/client';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('avaliation')
 export class AvaliationController {
-  constructor(private readonly avaliationService: AvaliationService) {}
+  constructor(
+    private readonly avaliationService: AvaliationService,
+    @Inject('CLASSIFICATION_SERVICE') private client: ClientProxy,
+  ) {}
 
   @Post(':id')
   async createUpdate(
@@ -26,15 +31,18 @@ export class AvaliationController {
         HttpStatus.BAD_REQUEST,
       );
     }
+    let response: Avaliation;
     const exist = await this.avaliationService.read(movieId, create.userEmail);
     if (exist) {
-      return this.avaliationService.update(
+      response = await this.avaliationService.update(
         movieId,
         create.avaliation,
         create.comment,
       );
     } else {
-      return await this.avaliationService.create(create, movieId);
+      response = await this.avaliationService.create(create, movieId);
     }
+    this.client.emit<string>('avaliation_done', movieId);
+    return response;
   }
 }
