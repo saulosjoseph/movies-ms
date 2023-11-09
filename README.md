@@ -24,6 +24,9 @@
 
 ## Description
 
+![Alt text](./public/diagram.svg)
+<img src="./public/diagram.svg">
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation

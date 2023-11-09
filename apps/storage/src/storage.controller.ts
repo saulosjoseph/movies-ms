@@ -10,12 +10,12 @@ export class StorageController {
   @MessagePattern({ cmd: 'save' })
   save(@Payload() data: Express.Multer.File): string {
     const name = uuidv4();
-    const path = `${join(
-      __dirname,
-      '..',
-      'storage/static/',
-    )}${name}${data.originalname.slice(-4)}`;
+    const path = `${join(__dirname, '..', 'storage/static/')}${name}.${
+      data.originalname.split('.')[1]
+    }`;
     fs.writeFileSync(path, Buffer.from(data.buffer));
-    return `http://localhost:3001/cover/${name}${data.originalname.slice(-4)}`;
+    return `http://localhost:3001/cover/${name}.${
+      data.originalname.split('.')[1]
+    }`;
   }
 }
