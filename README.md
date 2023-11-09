@@ -39,6 +39,9 @@ $ npm install
 ## Running the apps
 
 ```bash
+# env example
+$ DATABASE_URL="file:./dev.db"
+
 # start rabbitmq
 $ docker-compose up
 
