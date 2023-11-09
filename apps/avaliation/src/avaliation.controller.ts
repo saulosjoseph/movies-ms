@@ -1,4 +1,12 @@
-import { Body, Controller, Param, ParseIntPipe, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { AvaliationService } from './avaliation.service';
 import { CreateDto } from './avaliation.validator';
 import { Avaliation } from '@prisma/client';
@@ -8,10 +16,25 @@ export class AvaliationController {
   constructor(private readonly avaliationService: AvaliationService) {}
 
   @Post(':id')
-  async create(
+  async createUpdate(
     @Param('id', ParseIntPipe) movieId: number,
-    @Body() createUserDto: CreateDto,
+    @Body() create: CreateDto,
   ): Promise<Avaliation> {
-    return await this.avaliationService.create(createUserDto, movieId);
+    if (create.avaliation < 1 || create.avaliation > 5) {
+      throw new HttpException(
+        'Avaliation out of range',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const exist = await this.avaliationService.read(movieId, create.userEmail);
+    if (exist) {
+      return this.avaliationService.update(
+        movieId,
+        create.avaliation,
+        create.comment,
+      );
+    } else {
+      return await this.avaliationService.create(create, movieId);
+    }
   }
 }

@@ -39,6 +39,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/avaliation/tsconfig.app.json"
       }
+    },
+    "classification": {
+      "type": "application",
+      "root": "apps/classification",
+      "entryFile": "main",
+      "sourceRoot": "apps/classification/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/classification/tsconfig.app.json"
+      }
     }
   }
 }
