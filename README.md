@@ -64,7 +64,7 @@ $ npm run start:prod storage
 
 ## Documentation
 
-Swagger doc on route /api of movies service
+Swagger doc on route /api of movies and avaliation service
 
 ## Support
 
