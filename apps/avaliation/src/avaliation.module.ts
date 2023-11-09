@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AvaliationController } from './avaliation.controller';
 import { AvaliationService } from './avaliation.service';
-import { PrismaService } from 'apps/movies/src/prisma.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from 'env.validation';
+import { PrismaService } from '../../../prisma/prisma.service';
 
 @Module({
   imports: [

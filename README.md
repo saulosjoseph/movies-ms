@@ -37,7 +37,7 @@ $ npm install
 ```
 
 ## Running the apps
-
+use node 18+
 ```bash
 # env example
 $ DATABASE_URL=file:./dev.db

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClassificationController } from './classification.controller';
 import { ClassificationService } from './classification.service';
-import { PrismaService } from 'apps/movies/src/prisma.service';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from 'env.validation';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Avaliation, Classification } from '@prisma/client';
-import { PrismaService } from 'apps/movies/src/prisma.service';
+import { PrismaService } from '../../../prisma/prisma.service';
 
 @Injectable()
 export class ClassificationService {

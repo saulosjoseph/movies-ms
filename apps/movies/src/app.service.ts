@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Movie, Prisma, File } from '@prisma/client';
-import { PrismaService } from './prisma.service';
+import { PrismaService } from '../../../prisma/prisma.service';
 
 @Injectable()
 export class AppService {
