@@ -39,14 +39,17 @@ $ npm install
 ## Running the app
 
 ```bash
+# start rabbitmq
+$ docker-compose up
+
 # development
-$ npm run start
+$ npm run start name-service
 
 # watch mode
-$ npm run start:dev
+$ npm run start:dev name-service
 
 # production mode
-$ npm run start:prod
+$ npm run start:prod name-service
 ```
 
 ## Test
