@@ -11,7 +11,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         name: 'CLASSIFICATION_SERVICE',
         transport: Transport.RMQ,
         options: {
-          urls: ['amqp://localhost:5672'],
+          urls: ['amqp://admin:admin@localhost:5672'],
           queue: 'classification_queue',
           queueOptions: {
             durable: false,
