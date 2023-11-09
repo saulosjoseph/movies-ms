@@ -7,11 +7,12 @@ import {
   ClientsModule,
   Transport,
 } from '@nestjs/microservices';
+import { validate } from 'env.validation';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      validate
     }),
     ClientsModule.register([
       {
@@ -30,4 +31,4 @@ import {
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
-export class AppModule {}
+export class AppModule { }

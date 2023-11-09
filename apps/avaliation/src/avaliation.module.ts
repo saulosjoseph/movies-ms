@@ -3,9 +3,14 @@ import { AvaliationController } from './avaliation.controller';
 import { AvaliationService } from './avaliation.service';
 import { PrismaService } from 'apps/movies/src/prisma.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ConfigModule } from '@nestjs/config';
+import { validate } from 'env.validation';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      validate
+    }),
     ClientsModule.register([
       {
         name: 'CLASSIFICATION_SERVICE',
@@ -23,4 +28,4 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   controllers: [AvaliationController],
   providers: [AvaliationService, PrismaService],
 })
-export class AvaliationModule {}
+export class AvaliationModule { }

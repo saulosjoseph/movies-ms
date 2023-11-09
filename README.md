@@ -40,7 +40,7 @@ $ npm install
 
 ```bash
 # env example
-$ DATABASE_URL="file:./dev.db"
+$ DATABASE_URL=file:./dev.db
 
 # start rabbitmq
 $ docker-compose up
