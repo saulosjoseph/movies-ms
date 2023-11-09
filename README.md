@@ -36,33 +36,29 @@
 $ npm install
 ```
 
-## Running the app
+## Running the apps
 
 ```bash
 # start rabbitmq
 $ docker-compose up
 
 # development
-$ npm run start name-service
+$ npm run start avaliation
+$ npm run start classification
+$ npm run start movies
+$ npm run start storage
 
 # watch mode
-$ npm run start:dev name-service
+$ npm run start:dev avaliation
+$ npm run start:dev classification
+$ npm run start:dev movies
+$ npm run start:dev storage
 
 # production mode
-$ npm run start:prod name-service
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm run start:prod avaliation
+$ npm run start:prod classification
+$ npm run start:prod movies
+$ npm run start:prod storage
 ```
 
 ## Support
