@@ -12,14 +12,20 @@ import { AvaliationService } from './avaliation.service';
 import { CreateDto } from './avaliation.validator';
 import { Avaliation } from '@prisma/client';
 import { ClientProxy } from '@nestjs/microservices';
+import { ApiBody, ApiResponse } from '@nestjs/swagger';
 
 @Controller('avaliation')
 export class AvaliationController {
   constructor(
     private readonly avaliationService: AvaliationService,
     @Inject('CLASSIFICATION_SERVICE') private client: ClientProxy,
-  ) {}
+  ) { }
   @Post(':id')
+  @ApiBody({
+    type: CreateDto,
+  })
+  @ApiResponse({ status: 400, description: 'Avaliation out of range.' })
+  @ApiResponse({ status: 204, description: 'Movie do not exist.' })
   async createUpdate(
     @Param('id', ParseIntPipe) movieId: number,
     @Body() create: CreateDto,

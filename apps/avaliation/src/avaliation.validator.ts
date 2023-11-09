@@ -3,14 +3,17 @@ import { Avaliation } from '@prisma/client';
 import { IsString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateDto {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   userEmail: string;
 
+  @ApiProperty()
   @IsString()
   @IsOptional()
   comment: string;
 
+  @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
   avaliation: number;
