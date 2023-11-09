@@ -15,7 +15,7 @@ model Movie {
   title String
   year  Int
   cover File?
-  posts Avaliation[]
+  avaliations Avaliation[]
 }
 
 model File {

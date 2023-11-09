@@ -9,6 +9,8 @@ services:
     volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    env_file:
+      - ./rabbitmq.env
     networks:
         - rabbitmq_go_net
 

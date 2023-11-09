@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { StorageService } from './storage.service';
 import { StorageController } from './storage.controller';
-import { PrismaService } from 'apps/movies/src/prisma.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [],
+  imports: [ConfigModule.forRoot()],
   controllers: [StorageController],
-  providers: [StorageService, PrismaService],
+  providers: [StorageService],
 })
 export class StorageModule {}

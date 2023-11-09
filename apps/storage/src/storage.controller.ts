@@ -1,28 +1,21 @@
-import {
-  Controller,
-  Post,
-  UseInterceptors,
-  UploadedFile,
-  Req,
-  Param,
-  ParseIntPipe,
-} from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { Request } from 'express';
-import multerConfig from '../config/multer-config';
-import { StorageService } from './storage.service';
+import { Controller } from '@nestjs/common';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import * as fs from 'fs';
+import { join } from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
-@Controller('storage')
+@Controller()
 export class StorageController {
-  constructor(private readonly storageService: StorageService) {}
-
-  @Post(':id')
-  @UseInterceptors(FileInterceptor('cover', multerConfig))
-  create(
-    @UploadedFile() file: Express.Multer.File,
-    @Req() req: Request,
-    @Param('id', ParseIntPipe) id: number,
-  ) {
-    return this.storageService.create(file, req.protocol, req.get('host'), id);
+  constructor() {}
+  @MessagePattern({ cmd: 'save' })
+  save(@Payload() data: Express.Multer.File): string {
+    const name = uuidv4();
+    const path = `${join(
+      __dirname,
+      '..',
+      'storage/static/',
+    )}${name}${data.originalname.slice(-4)}`;
+    fs.writeFileSync(path, Buffer.from(data.buffer));
+    return `http://localhost:3001/cover/${name}${data.originalname.slice(-4)}`;
   }
 }
