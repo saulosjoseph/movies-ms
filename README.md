@@ -64,7 +64,7 @@ $ npm run start:prod storage
 
 ## Documentation
 
-Swagger doc on path-service/api
+Swagger doc on route /api of every service
 
 ## Support
 
