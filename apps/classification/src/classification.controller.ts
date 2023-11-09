@@ -6,7 +6,12 @@ import { EventPattern } from '@nestjs/microservices';
 export class ClassificationController {
   constructor(private readonly classificationService: ClassificationService) {}
   @EventPattern('avaliation_done')
-  accumulate(movieId: number): void {
-    console.log(movieId);
+  async set(movieId: number): Promise<void> {
+    await this.classificationService.save(
+      movieId,
+      this.classificationService.calculate(
+        await this.classificationService.getAvaliations(movieId),
+      ),
+    );
   }
 }

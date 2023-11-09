@@ -11,11 +11,12 @@ datasource db {
 }
 
 model Movie {
-  id    Int          @id @default(autoincrement())
-  title String
-  year  Int
-  cover File?
-  avaliations Avaliation[]
+  id             Int             @id @default(autoincrement())
+  title          String
+  year           Int
+  cover          File?
+  classification Classification?
+  avaliations    Avaliation[]
 }
 
 model File {
@@ -25,6 +26,13 @@ model File {
   url         String
   movie       Movie  @relation(fields: [movieId], references: [id])
   movieId     Int    @unique
+}
+
+model Classification {
+  id             Int   @id @default(autoincrement())
+  classification Float
+  movie          Movie @relation(fields: [movieId], references: [id])
+  movieId        Int   @unique
 }
 
 model Avaliation {

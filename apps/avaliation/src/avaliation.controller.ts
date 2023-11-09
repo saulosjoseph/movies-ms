@@ -19,7 +19,6 @@ export class AvaliationController {
     private readonly avaliationService: AvaliationService,
     @Inject('CLASSIFICATION_SERVICE') private client: ClientProxy,
   ) {}
-
   @Post(':id')
   async createUpdate(
     @Param('id', ParseIntPipe) movieId: number,
@@ -35,7 +34,7 @@ export class AvaliationController {
     const exist = await this.avaliationService.read(movieId, create.userEmail);
     if (exist) {
       response = await this.avaliationService.update(
-        movieId,
+        exist.id,
         create.avaliation,
         create.comment,
       );

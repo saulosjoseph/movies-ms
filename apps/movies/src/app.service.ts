@@ -17,6 +17,8 @@ export class AppService {
       },
       include: {
         cover: true,
+        classification: true,
+        avaliations: true,
       },
     });
   }
@@ -24,6 +26,8 @@ export class AppService {
     return this.prisma.movie.findMany({
       include: {
         cover: true,
+        classification: true,
+        avaliations: true,
       },
     });
   }
